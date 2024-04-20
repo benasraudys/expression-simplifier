@@ -1,4 +1,4 @@
-public class ExpressionBasics {
+public class ExpressionTools {
     public static String removeWhitespace(String str) {
         return str.replaceAll("\\s", "");
     }

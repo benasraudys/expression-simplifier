@@ -3,11 +3,11 @@ public class Addition {
         for (int i = 0; i < expression.length(); i++) {
             char character = expression.charAt(i);
             if (character == '+') {
-                int leftId = ExpressionBasics.findLeftValueIndex(expression, i);
-                int rightId = ExpressionBasics.findRightValueIndex(expression, i);
+                int leftId = ExpressionTools.findLeftValueIndex(expression, i);
+                int rightId = ExpressionTools.findRightValueIndex(expression, i);
 
-                int leftVal = ExpressionBasics.convertStringToInt(expression.substring(leftId, i));
-                int rightVal = ExpressionBasics.convertStringToInt(expression.substring(i + 1, rightId + 1));
+                int leftVal = ExpressionTools.convertStringToInt(expression.substring(leftId, i));
+                int rightVal = ExpressionTools.convertStringToInt(expression.substring(i + 1, rightId + 1));
 
                 int sum = leftVal + rightVal;
                 expression = expression.substring(0, leftId) + sum + expression.substring(rightId + 1);

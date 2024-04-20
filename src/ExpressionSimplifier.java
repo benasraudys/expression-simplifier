@@ -1,6 +1,6 @@
 public class ExpressionSimplifier {
     public static String simplify(String expression) {
-        expression = ExpressionBasics.removeWhitespace(expression);
+        expression = ExpressionTools.removeWhitespace(expression);
 
         System.out.println("Your expression: " + expression);
 
