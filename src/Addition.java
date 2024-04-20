@@ -9,13 +9,16 @@ public class Addition {
                 String leftVal = expression.substring(leftId, i);
                 String rightVal = expression.substring(i + 1, rightId + 1);
 
-                int sum = ExpressionBasics.convertStringToInt(leftVal) + ExpressionBasics.convertStringToInt(rightVal);
-
                 System.out.println("Left Value: " + leftVal);
                 System.out.println("Right Value: " + rightVal);
+
+                int sum = ExpressionBasics.convertStringToInt(leftVal) + ExpressionBasics.convertStringToInt(rightVal);
+
                 System.out.println("Sum: " + sum);
 
                 expression = expression.substring(0, leftId) + sum + expression.substring(rightId + 1);
+
+                i = 0;//TODO: This is a workaround, could use some complex math to be more efficient and go back
             }
         }
         return expression;

@@ -19,21 +19,19 @@ public class ExpressionBasics {
 
     public static int findLeftValueIndex(String expression, int origin) {
         for (int i = origin - 1; i >= 0; i--) {
-            char character = expression.charAt(i);
-            if (!Character.isDigit(character)) {
-                return i + 1; // Return the index where the left value starts
+            if (!Character.isDigit(expression.charAt(i))) {
+                return i + 1;
             }
         }
-        throw new IllegalArgumentException("Invalid expression: " + expression);
+        return 0;
     }
 
     public static int findRightValueIndex(String expression, int origin) {
         for (int i = origin + 1; i < expression.length(); i++) {
-            char character = expression.charAt(i);
-            if (!Character.isDigit(character)) {
-                return i - 1; // Return the index where the right value ends
+            if (!Character.isDigit(expression.charAt(i))) {
+                return i - 1;
             }
         }
-        throw new IllegalArgumentException("Invalid expression: " + expression);
+        return expression.length()-1;
     }
 }
