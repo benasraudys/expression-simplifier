@@ -7,8 +7,6 @@ public class ExpressionBasics {
         if (number == null || number.isEmpty()) {
             throw new IllegalArgumentException("Input string cannot be null or empty");
         }
-
-        // Use Integer.parseInt() to convert the string to an integer
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
