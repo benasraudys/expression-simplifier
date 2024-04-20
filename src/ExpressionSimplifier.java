@@ -4,6 +4,10 @@ public class ExpressionSimplifier {
 
         System.out.println("Your expression: " + expression);
 
+        expression = Multiplication.doMultiplication(expression);
+
+        System.out.println("Your expression: " + expression);
+
         expression = Addition.doAddition(expression);
 
         System.out.println("Your expression: " + expression);
