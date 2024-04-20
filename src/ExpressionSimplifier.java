@@ -8,6 +8,10 @@ public class ExpressionSimplifier {
 
         System.out.println("Your expression: " + expression);
 
+        expression = Division.doDivision(expression);
+
+        System.out.println("Your expression: " + expression);
+
         expression = Addition.doAddition(expression);
 
         System.out.println("Your expression: " + expression);
