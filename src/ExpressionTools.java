@@ -10,6 +10,9 @@ public class ExpressionTools {
 
     public static boolean isExpressionValid (String expression) {
         int bracketsCounter = 0;
+        if (expression.length() > 50) {
+            return false;
+        }
         for (int i = 0; i < expression.length(); i++) {
             if (expression.charAt(i) == '(') {
                 bracketsCounter++;
@@ -33,14 +36,8 @@ public class ExpressionTools {
     public static int convertStringToInt(String number) {
         if (number == null || number.isEmpty()) {
             return 0;
-        } else if (number.length() > 15) {
-            throw new IllegalArgumentException("Input string cannot more than 15 chars long");
         }
-        try {
-            return Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Input string is not a valid integer");
-        }
+        return Integer.parseInt(number);
     }
 
     public static int findLeftValueIndex(String expression, int origin) {

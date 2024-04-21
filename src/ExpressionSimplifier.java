@@ -3,7 +3,7 @@ public class ExpressionSimplifier {
     public static String simplify(String expression) {
         expression = ExpressionTools.cleanExpression(expression);
         if (!ExpressionTools.isExpressionValid(expression)) {
-            System.out.println("Error: expression is invalid, please refer to 'Readme.md'");
+            System.out.println("Error: expression is invalid, please refer to 'README.md'");
             System.exit(1);
         }
         expression = solveMath(expression);
