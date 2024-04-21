@@ -7,24 +7,24 @@ public class ExpressionSimplifier {
             if (character == '*') {
                 expression = Multiplication.doMultiplication(expression, i);
                 i = 0;
-                System.out.println("Your expression: " + expression);
+                ExpressionTools.printExpression(expression);
             } else if (character == '/') {
                 expression = Division.doDivision(expression, i);
                 i = 0;
-                System.out.println("Your expression: " + expression);
+                ExpressionTools.printExpression(expression);
             }
         }
 
-        for (int i = 0; i < expression.length(); i++) {
+        for (int i = 1; i < expression.length(); i++) {
             char character = expression.charAt(i);
             if (character == '+') {
                 expression = Addition.doAddition(expression, i);
                 i = 0;
-                System.out.println("Your expression: " + expression);
+                ExpressionTools.printExpression(expression);
             } else if (character == '-') {
                 expression = Subtraction.doSubtraction(expression, i);
                 i = 0;
-                System.out.println("Your expression: " + expression);
+                ExpressionTools.printExpression(expression);
             }
         }
 

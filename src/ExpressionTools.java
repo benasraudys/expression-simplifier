@@ -3,9 +3,16 @@ public class ExpressionTools {
         return str.replaceAll("\\s", "");
     }
 
-    public static String addZeroesBeforeMinus(String expression) {
-
-        return expression;
+    public static void printExpression(String expression) {
+        System.out.print("Solving: " + expression);
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        for (int i = 0; i <= expression.length() + 100; i++) {
+            System.out.print("\b");
+        }
     }
 
     public static int convertStringToInt(String number) {
