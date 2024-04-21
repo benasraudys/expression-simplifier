@@ -1,12 +1,15 @@
 public class ExpressionTools {
+
+    private static final int animationSpeedWait = 100;
+
     public static String removeWhitespace(String str) {
         return str.replaceAll("\\s", "");
     }
 
     public static void printExpression(String expression) {
-        System.out.print("Solving: " + expression);
+        System.out.println("Solving: " + expression);
         try {
-            Thread.sleep(50);
+            Thread.sleep(animationSpeedWait);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -30,10 +33,9 @@ public class ExpressionTools {
 
     public static int findLeftValueIndex(String expression, int origin) {
         for (int i = origin - 1; i >= 0; i--) {
-            Character character = expression.charAt(i);
-            if (character == '-') {
+            if (expression.charAt(i) == '-') {
                 return i;
-            } else if (!Character.isDigit(character) ) {
+            } else if (!Character.isDigit(expression.charAt(i))) {
                 return i + 1;
             }
         }
