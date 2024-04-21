@@ -8,10 +8,6 @@ public class Subtraction {
 
         int sum = leftVal - rightVal;
 
-        System.out.println(leftVal);
-        System.out.println(rightVal);
-        System.out.println(sum);
-
         expression = expression.substring(0, leftId) + sum + expression.substring(rightId + 1);
 
         return expression;

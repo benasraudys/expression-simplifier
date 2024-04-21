@@ -3,6 +3,11 @@ public class ExpressionTools {
         return str.replaceAll("\\s", "");
     }
 
+    public static String addZeroesBeforeMinus(String expression) {
+
+        return expression;
+    }
+
     public static int convertStringToInt(String number) {
         if (number == null || number.isEmpty()) {
             return 0;
@@ -18,7 +23,10 @@ public class ExpressionTools {
 
     public static int findLeftValueIndex(String expression, int origin) {
         for (int i = origin - 1; i >= 0; i--) {
-            if (!Character.isDigit(expression.charAt(i))) {
+            Character character = expression.charAt(i);
+            if (character == '-') {
+                return i;
+            } else if (!Character.isDigit(character) ) {
                 return i + 1;
             }
         }
