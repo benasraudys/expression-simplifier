@@ -1,20 +1,14 @@
 public class Addition {
-    public static String doAddition(String expression) {
-        for (int i = 0; i < expression.length(); i++) {
-            char character = expression.charAt(i);
-            if (character == '+') {
-                int leftId = ExpressionTools.findLeftValueIndex(expression, i);
-                int rightId = ExpressionTools.findRightValueIndex(expression, i);
+    public static String doAddition(String expression, int origin) {
+        int leftId = ExpressionTools.findLeftValueIndex(expression, origin);
+        int rightId = ExpressionTools.findRightValueIndex(expression, origin);
 
-                int leftVal = ExpressionTools.convertStringToInt(expression.substring(leftId, i));
-                int rightVal = ExpressionTools.convertStringToInt(expression.substring(i + 1, rightId + 1));
+        int leftVal = ExpressionTools.convertStringToInt(expression.substring(leftId, origin));
+        int rightVal = ExpressionTools.convertStringToInt(expression.substring(origin + 1, rightId + 1));
 
-                int sum = leftVal + rightVal;
-                expression = expression.substring(0, leftId) + sum + expression.substring(rightId + 1);
+        int sum = leftVal + rightVal;
+        expression = expression.substring(0, leftId) + sum + expression.substring(rightId + 1);
 
-                i = 0;//TODO: This is a workaround, could use some complex math to be more efficient and go back
-            }
-        }
         return expression;
     }
 }

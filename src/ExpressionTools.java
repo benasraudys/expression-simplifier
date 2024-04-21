@@ -5,12 +5,13 @@ public class ExpressionTools {
 
     public static int convertStringToInt(String number) {
         if (number == null || number.isEmpty()) {
-            throw new IllegalArgumentException("Input string cannot be null or empty");
+            return 0;
+        } else if (number.length() > 15) {
+            throw new IllegalArgumentException("Input string cannot more than 15 chars long");
         }
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            // Handle the case where the string is not a valid integer
             throw new IllegalArgumentException("Input string is not a valid integer");
         }
     }
