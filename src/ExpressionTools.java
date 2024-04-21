@@ -2,6 +2,12 @@ public class ExpressionTools {
 
     private static final int animationSpeedWait = 100;
 
+    public static String cleanExpression (String expression) {
+        expression = removeWhitespace(expression);
+        //TODO: remove letters and other junk
+        return expression;
+    }
+
     public static String removeWhitespace(String str) {
         return str.replaceAll("\\s", "");
     }
