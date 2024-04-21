@@ -1,27 +1,33 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class ExpressionTools {
 
-    private static final int animationSpeedWait = 100;
-
     public static String cleanExpression (String expression) {
-        expression = removeWhitespace(expression);
-        //TODO: remove letters and other junk
+        expression = removeJunk(expression);
         return expression;
     }
 
-    public static String removeWhitespace(String str) {
-        return str.replaceAll("\\s", "");
+    public static boolean isExpressionValid (String expression) {
+        int bracketsCounter = 0;
+        for (int i = 0; i < expression.length(); i++) {
+            if (expression.charAt(i) == '(') {
+                bracketsCounter++;
+            } else if (expression.charAt(i) == ')') {
+                bracketsCounter--;
+            }
+        }
+        return bracketsCounter == 0;
+    }
+
+    public static String removeJunk(String expression) {
+        Pattern pattern = Pattern.compile("[^\\d\\-+*/()]+");
+        Matcher matcher = pattern.matcher(expression);
+        return matcher.replaceAll("");
     }
 
     public static void printExpression(String expression) {
         System.out.println("Solving: " + expression);
-        try {
-            Thread.sleep(animationSpeedWait);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        for (int i = 0; i <= expression.length() + 100; i++) {
-            System.out.print("\b");
-        }
     }
 
     public static int convertStringToInt(String number) {
