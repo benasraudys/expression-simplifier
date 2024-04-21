@@ -9,4 +9,5 @@ To simplify an expression, follow these steps:
 2. The expression can only contain whole numbers, both negative and positive.
 3. Ensure that the expression is error-free.
 4. Allowed operations include addition, subtraction, multiplication, and division.
-5. The program automatically removes unnecessary characters and whitespace for simplification.
+5. The expression must not exceed 50 characters in length.
+6. The program automatically removes unnecessary characters and whitespace for simplification.
