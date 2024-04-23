@@ -3,10 +3,17 @@ public class ExpressionSimplifier {
     public static String simplify(String expression) {
         expression = ExpressionTools.cleanExpression(expression);
         if (!ExpressionTools.isExpressionValid(expression)) {
-            System.out.println("Error: expression is invalid, please refer to 'README.md'");
-            System.exit(1);
+            expression = null;
         }
-        expression = solveMath(expression);
+        else {
+            try {
+                expression = solveMath(expression);
+            } catch (NumberFormatException e) {
+                return null;
+            } catch (ArithmeticException e) {
+                return null; // Divide by zero error
+            }
+        }
         return expression;
     }
 
@@ -46,7 +53,7 @@ public class ExpressionSimplifier {
             if (expression.charAt(i) == '(') {
                 expression = solveBrackets(expression, i);
             } else if (expression.charAt(i) == ')') {
-                ExpressionTools.printExpression(expression);
+                // Here you could place a println to visualize solving the expression
                 String subString = expression.substring(origin + 1, i);
                 subString = ExpressionSimplifier.simplify(subString);
                 expression = expression.substring(0, origin) + subString + expression.substring(i + 1);

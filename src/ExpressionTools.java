@@ -1,18 +1,51 @@
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class ExpressionTools {
 
     public static String cleanExpression (String expression) {
-        expression = removeJunk(expression);
+        expression = removeWhitespace(expression);
         return expression;
     }
 
+    public static boolean expressionHasValidChars(String expression) {
+        String pattern = "^[0-9+\\-*/()\\s]+$";
+        Pattern regex = Pattern.compile(pattern);
+        Matcher matcher = regex.matcher(expression);
+        return matcher.matches();
+    }
+
     public static boolean isExpressionValid (String expression) {
-        int bracketsCounter = 0;
-        if (expression.length() > 50) {
+
+        if (expression.isEmpty()) { return false; }
+
+        if (!expressionHasValidChars(expression)) { return false; }
+
+        Character lastChar = expression.charAt(expression.length()-1);
+        if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/' || lastChar == '(') { return false; }
+
+        if (expression.length() > 100) {
             return false;
         }
+        for (int i = 0; i < expression.length(); i++) {
+            Character ch = expression.charAt(i);
+            if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+                if (i != 0) {
+                    Character lch = expression.charAt(i-1);
+                    if (lch == '+' || lch == '-' || lch == '*' || lch == '/' || (lch == '(' && ch != '-')) {
+                        return false;
+                    }
+                }
+
+                if (i != expression.length() - 1) {
+                    Character nch = expression.charAt(i+1);
+                    if (nch == '+' || nch == '-' || nch == '*' || nch == '/' || nch == ')') {
+                        return false;
+                    }
+                }
+            }
+        }
+        int bracketsCounter = 0;
         for (int i = 0; i < expression.length(); i++) {
             if (expression.charAt(i) == '(') {
                 bracketsCounter++;
@@ -23,20 +56,15 @@ public class ExpressionTools {
         return bracketsCounter == 0;
     }
 
-    public static String removeJunk(String expression) {
-        Pattern pattern = Pattern.compile("[^\\d\\-+*/()]+");
-        Matcher matcher = pattern.matcher(expression);
-        return matcher.replaceAll("");
-    }
-
-    public static void printExpression(String expression) {
-        System.out.println("Solving: " + expression);
+    public static String removeWhitespace(String expression) {
+        return expression.replaceAll("\\s", "");
     }
 
     public static int convertStringToInt(String number) {
         if (number == null || number.isEmpty()) {
             return 0;
         }
+        // If error occurs it's caught by ExpressionSimplifier.simplify()
         return Integer.parseInt(number);
     }
 

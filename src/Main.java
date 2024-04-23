@@ -1,19 +1,47 @@
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
+
+    public static List<String> readFile(String filePath) {
+        List<String> expressions = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                expressions.add(line);
+            }
+        } catch (IOException e) {
+            System.err.println("Error: Incorrect file path");
+            System.exit(127);
+        }
+
+        return expressions;
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Your expression: ");
-        String expression = scanner.nextLine();
 
-        //String expression = "-1-1-1+2*2-1*3+27/9/3+4/1+1/1+1/1";
-        //String expression = "-1-1-(1+2)*2-1*3+27/9/3+4/1+1/1+1/1";
-        //String expression = "-(1+(5+3)*((2+4)-(2+5)+7)+2)+(-3)abc";
-        //String expression = "(((((1+3)))))";
-        //String expression = "((3)3) /11";
 
-        expression = ExpressionSimplifier.simplify(expression);
-        System.out.print("Solved expression: " + expression);
+        String filePath;
+
+        if (args.length == 0) {
+            System.out.print("Please enter file path: ");
+            filePath = scanner.nextLine();
+        }
+        else {
+            filePath = String.join(" ", args);
+        }
+
+        List<String> expressions = readFile(filePath);
+        for (String expression : expressions) {
+            expression = ExpressionSimplifier.simplify(expression);
+            System.out.println("Solved expression: " + expression);
+        }
     }
 }
