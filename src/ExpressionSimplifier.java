@@ -2,7 +2,7 @@ public class ExpressionSimplifier {
 
     public static String simplify(String expression) {
         expression = ExpressionTools.cleanExpression(expression);
-        if (!ExpressionTools.isExpressionValid(expression)) {
+        if (!ExpressionValidator.isExpressionValid(expression)) {
             expression = null;
         }
         else {
@@ -53,7 +53,6 @@ public class ExpressionSimplifier {
             if (expression.charAt(i) == '(') {
                 expression = solveBrackets(expression, i);
             } else if (expression.charAt(i) == ')') {
-                // Here you could place a println to visualize solving the expression
                 String subString = expression.substring(origin + 1, i);
                 subString = ExpressionSimplifier.simplify(subString);
                 expression = expression.substring(0, origin) + subString + expression.substring(i + 1);
