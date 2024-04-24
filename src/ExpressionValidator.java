@@ -4,9 +4,7 @@ import java.util.regex.Pattern;
 public class ExpressionValidator {
     public static boolean expressionHasValidChars(String expression) {
         String pattern = "^[0-9+\\-*/()\\s]+$";
-        Pattern regex = Pattern.compile(pattern);
-        Matcher matcher = regex.matcher(expression);
-        return matcher.matches();
+        return Pattern.matches(pattern, expression);
     }
 
     public static boolean expressionHasEvenBrackets (String expression) {
@@ -21,20 +19,19 @@ public class ExpressionValidator {
         return bracketsCounter == 0;
     }
 
-    public static boolean expressionHasDuplicateOperators (String expression) {
+    public static boolean expressionHasDuplicateOperators(String expression) {
         for (int i = 0; i < expression.length(); i++) {
             char ch = expression.charAt(i);
             if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
                 if (i != 0) {
-                    char lch = expression.charAt(i-1);
-                    if (lch == '+' || lch == '-' || lch == '*' || lch == '/' || (lch == '(' && ch != '-')) {
+                    char prevChar = expression.charAt(i - 1);
+                    if (prevChar == '+' || prevChar == '-' || prevChar == '*' || prevChar == '/' || (prevChar == '(' && ch != '-')) {
                         return true;
                     }
                 }
-
                 if (i != expression.length() - 1) {
-                    char nch = expression.charAt(i+1);
-                    if (nch == '+' || nch == '-' || nch == '*' || nch == '/' || nch == ')') {
+                    char nextChar = expression.charAt(i + 1);
+                    if (nextChar == '+' || nextChar == '-' || nextChar == '*' || nextChar == '/' || nextChar == ')') {
                         return true;
                     }
                 }
@@ -55,6 +52,19 @@ public class ExpressionValidator {
         return false;
     }
 
+    public static boolean bracketsUsedProperly(String expression) {
+        for (int i = 0; i < expression.length(); i++) {
+            char ch = expression.charAt(i);
+            if (ch == '(' && i > 0 && Character.isDigit(expression.charAt(i - 1))) {
+                return false;
+            }
+            if (ch == ')' && i < expression.length() - 1 && Character.isDigit(expression.charAt(i + 1))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static boolean isExpressionValid (String expression) {
 
         if (expression.isEmpty()) { return false; }
@@ -68,6 +78,8 @@ public class ExpressionValidator {
         if (expressionHasDuplicateOperators(expression)) { return false; }
 
         if (!expressionHasEvenBrackets(expression)) { return false; }
+
+        if (!bracketsUsedProperly(expression)) { return false; }
 
         return true;
     }

@@ -35,11 +35,11 @@ public class FileManager {
 
     public static void outputExpressions(String expression, String outputFilePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath, true))) {
-            writer.write("Solved expression: " + expression);
+            writer.write("Solution: " + expression);
             writer.newLine();
             writer.flush();
 
-            System.out.println("Solved expression: " + expression);
+            System.out.println("Solution: " + expression);
         } catch (IOException e) {
             System.err.println("Error: Couldn't open file for writing");
             System.exit(3);
