@@ -18,6 +18,12 @@ public class ExpressionSimplifier {
     }
 
     public static String solveMath(String expression) {
+        Addition addition = new Addition();
+        Subtraction subtraction = new Subtraction();
+        Multiplication multiplication = new Multiplication();
+        Division division = new Division();
+
+
         for (int i = 0; i < expression.length(); i++) {
             char character = expression.charAt(i);
             if (character == '(') {
@@ -28,20 +34,20 @@ public class ExpressionSimplifier {
         for (int i = 0; i < expression.length(); i++) {
             char character = expression.charAt(i);
             if (character == '*') {
-                expression = Multiplication.doMultiplication(expression, i);
+                expression = multiplication.doOperation(expression, i);
                 i = 0;
             } else if (character == '/') {
-                expression = Division.doDivision(expression, i);
+                expression = division.doOperation(expression, i);
                 i = 0;
             }
         }
         for (int i = 1; i < expression.length(); i++) {
             char character = expression.charAt(i);
             if (character == '+') {
-                expression = Addition.doAddition(expression, i);
+                expression = addition.doOperation(expression, i);
                 i = 0;
             } else if (character == '-') {
-                expression = Subtraction.doSubtraction(expression, i);
+                expression = subtraction.doOperation(expression, i);
                 i = 0;
             }
         }
