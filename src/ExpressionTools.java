@@ -1,13 +1,4 @@
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-
 public class ExpressionTools {
-
-    public static String cleanExpression (String expression) {
-        expression = removeWhitespace(expression);
-        return expression;
-    }
-
     public static String removeWhitespace(String expression) {
         return expression.replaceAll("\\s", "");
     }

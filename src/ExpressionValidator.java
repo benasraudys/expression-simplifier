@@ -1,4 +1,3 @@
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ExpressionValidator {
@@ -52,7 +51,7 @@ public class ExpressionValidator {
         return false;
     }
 
-    public static boolean bracketsUsedProperly(String expression) {
+    public static boolean bracketsAreUsedProperly(String expression) {
         for (int i = 0; i < expression.length(); i++) {
             char ch = expression.charAt(i);
             if (ch == '(' && i > 0 && Character.isDigit(expression.charAt(i - 1))) {
@@ -65,7 +64,7 @@ public class ExpressionValidator {
         return true;
     }
 
-    public static boolean isExpressionValid (String expression) {
+    public static boolean expressionIsValid(String expression) {
 
         if (expression.isEmpty()) { return false; }
 
@@ -79,7 +78,7 @@ public class ExpressionValidator {
 
         if (!expressionHasEvenBrackets(expression)) { return false; }
 
-        if (!bracketsUsedProperly(expression)) { return false; }
+        if (!bracketsAreUsedProperly(expression)) { return false; }
 
         return true;
     }

@@ -1,8 +1,8 @@
 public class ExpressionSimplifier {
 
     public static String simplify(String expression) {
-        expression = ExpressionTools.cleanExpression(expression);
-        if (!ExpressionValidator.isExpressionValid(expression)) {
+        expression = ExpressionTools.removeWhitespace(expression);
+        if (!ExpressionValidator.expressionIsValid(expression)) {
             expression = null;
         }
         else {
