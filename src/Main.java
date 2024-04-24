@@ -1,9 +1,12 @@
+//2024 OOP Project
+//Author: Benas Raudys
 import java.util.Scanner;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        FileManager fileManager = new FileManager();
         String inputFilePath;
         String outputFilePath = "out.txt";
 
@@ -15,14 +18,14 @@ public class Main {
             inputFilePath = String.join(" ", args);
         }
 
-        FileManager.createOutputFile(outputFilePath);
+        fileManager.createOutputFile(outputFilePath);
 
         System.out.println("Please note that incorrect expressions will return 'null'");
 
-        List<String> expressions = FileManager.readFile(inputFilePath);
+        List<String> expressions = fileManager.readFile(inputFilePath);
         for (String expression : expressions) {
             expression = ExpressionSimplifier.simplify(expression);
-            FileManager.outputExpressions(expression, outputFilePath);
+            fileManager.outputExpressions(expression, outputFilePath);
         }
     }
 }

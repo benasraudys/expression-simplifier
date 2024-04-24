@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileManager {
-    public static List<String> readFile(String filePath) {
+    public List<String> readFile(String filePath) {
         List<String> expressions = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -24,7 +24,7 @@ public class FileManager {
         return expressions;
     }
 
-    public static void createOutputFile(String outputFilePath) {
+    public void createOutputFile(String outputFilePath) {
         try {
             FileOutputStream fos = new FileOutputStream(outputFilePath, false);
         } catch (IOException e) {
@@ -33,7 +33,7 @@ public class FileManager {
         }
     }
 
-    public static void outputExpressions(String expression, String outputFilePath) {
+    public void outputExpressions(String expression, String outputFilePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath, true))) {
             writer.write("Solution: " + expression);
             writer.newLine();
